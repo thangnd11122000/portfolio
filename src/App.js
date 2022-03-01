@@ -4,7 +4,7 @@ import "./App.scss";
 import { Navbar } from "./components";
 const App = () => {
   return (
-    <div>
+    <div className="app">
       <Navbar />  
       <Header />
       <About />

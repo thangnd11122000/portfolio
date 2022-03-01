@@ -4,7 +4,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(49, 59, 172, 0.25);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   border: 1px solid rgba(255, 255, 255, 0.18);
@@ -15,14 +15,14 @@
 .app__navbar-logo {
   display: flex;
   justify-content: flex-start;
-  align-items: center;
-  img {
-    width: 90px;
-    height: 20px;
-    @media screen and(min-width: 2000px) {
-      width: 180px;
-      height: 40px;
-    }
+  a {
+    text-decoration: none;
+    align-items: center;
+    font-size: 20px;
+    letter-spacing: 1px;
+    color: #444;
+    font-weight: 800;
+    cursor: pointer;
   }
 }
 
@@ -37,17 +37,18 @@
     cursor: pointer;
     flex-direction: column;
     div {
-      width: 5px;
-      height: 5px;
+      width: 0;
+      height: 2px;
       background: transparent;
-      border-radius: 50%;
       margin-bottom: 5px;
+      transition: all 0.3s ease;
     }
     a {
-      color: var(--gray-color);
+      color: #222;
       text-decoration: none;
       flex-direction: column;
       text-transform: uppercase;
+      font-size: 14px;
       font-weight: 500;
       transition: all 0.3s ease-in-out;
       &:hover {
@@ -56,6 +57,7 @@
     }
     &:hover {
       div {
+        width: 100%;
         background: var(--secondary-color);
       }
     }
@@ -65,72 +67,77 @@
   }
 }
 
-.app__navbar-menu {
+.app__navbar-open {
   width: 35px;
   height: 35px;
   border-radius: 50%;
   position: relative;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   background: var(--secondary-color);
+
+  @media screen and (max-width: 900px) {
+    display: flex;
+  }
+
   svg {
     width: 70%;
     height: 70%;
     color: var(--white-color);
   }
-  div {
-    position: fixed;
-    top: 0;
-    bottom: 0;
+}
+
+.app__navbar-menu {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: -100%;
+  z-index: 5;
+  padding: 1rem;
+  width: 80%;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  flex-direction: column;
+  background: var(--white-color) url("../../assets/bgWhite.png") repeat;
+  background-size: cover;
+  box-shadow: 0 0 20px rgba(168, 168, 168, 0.15);
+  transition: all 0.8s ease;
+  &.active {
     right: 0;
-    z-index: 5;
-    padding: 1rem;
-    width: 80%;
-    height: 100vh;
+  }
+
+  svg {
+    width: 35px;
+    height: 35px;
+    color: var(--secondary-color);
+    margin: 0.5rem 1rem;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
     display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
+    justify-content: flex-start;
+    align-items: flex-start;
     flex-direction: column;
-    background: var(--white-color) url("../../assets/bgWhite.png") repeat;
-    background-size: cover;
-    box-shadow: 0 0 20px rgba(168, 168, 168, 0.15);
-    svg {
-      width: 35px;
-      height: 35px;
-      color: var(--secondary-color);
-      margin: 0.5rem 1rem;
-    }
-    ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      width: 100%;
-      display: flex;
-      justify-content: flex-start;
-      align-items: flex-start;
-      flex-direction: column;
-      li {
-        margin: 1rem;
-        a {
-          color: var(--gray-color);
-          text-decoration: none;
-          font-size: 1rem;
-          text-transform: uppercase;
-          font-weight: 500;
-          transition: all 0.3s ease-in-out;
-          &:hover {
-            color: var(--secondary-color);
-          }
+    li {
+      margin: 1rem;
+      a {
+        color: var(--gray-color);
+        text-decoration: none;
+        font-size: 1rem;
+        text-transform: uppercase;
+        font-weight: 500;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          color: var(--secondary-color);
         }
       }
     }
-    @media screen and (min-width: 900px) {
-      display: none;
-    }
-  }
-  @media screen and (min-width: 900px) {
-    display: none;
   }
 }
