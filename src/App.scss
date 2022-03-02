@@ -148,10 +148,10 @@
 
 .app__navigation {
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   flex-direction: column;
-  padding: 1rem;
+  padding: 18rem 1rem 0;
   .app__navigation-dot {
     width: 10px;
     height: 10px;
@@ -168,6 +168,22 @@
       width: 20px;
       height: 20px;
     }
+  }
+}
+
+.app__scroll-top {
+  position: fixed;
+  bottom: -100%;
+  right: 10px;
+  transition: all 0.5s;
+  svg {
+    width: 25px;
+    height: 25px;
+    color: var(--secondary-color);
+  }
+
+  &.active {
+    bottom: 10px;
   }
 }
 
