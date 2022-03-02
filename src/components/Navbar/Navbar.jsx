@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { HiMenuAlt4, HiX } from "react-icons/hi";
-import { motion } from "framer-motion";
 import "./Navbar.scss";
 
 const items = ["home", "about", "project", "skills", "contact"];
