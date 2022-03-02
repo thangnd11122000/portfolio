@@ -64,7 +64,7 @@
     padding: 0;
   }
   &--item {
-    margin-top: 1rem;
+    margin-top: .5rem;
     span {
       color: var(--gray-color);
     }
@@ -73,5 +73,12 @@
       font-size: 18px;
       line-height: 28px;
     }
+  }
+}
+
+.app__education{
+  margin-bottom: 10px;
+  p{
+    font-size: 16px;
   }
 }

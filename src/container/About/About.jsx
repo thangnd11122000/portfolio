@@ -45,6 +45,13 @@ const About = () => {
           ))}
         </div>
         <div className="app__objective">
+          <h2>Education</h2>
+          <div className="app__objective--item app__education">
+            <p>
+              FPT Polytechnic <span>(05/2020 - 09/ 2022)</span>
+            </p>
+            <p>Major: Web Design</p>
+          </div>
           <h2>Objective</h2>
           {objectives?.reverse()?.map((objective, index) => (
             <div key={index} className="app__objective--item">
