@@ -15,7 +15,7 @@ const scaleVariants = {
   },
 };
 
-const circles = [images.flutter, images.redux, images.sass];
+const circles = [images.html, images.react, images.sass];
 
 const Header = () => {
   return (
@@ -26,17 +26,40 @@ const Header = () => {
         className="app__header-info"
       >
         <div className="app__header-badge">
-          <div className="badge-cmp app__flex">
-            <span>👋</span>
+          <motion.div
+            drag
+            dragConstraints={{
+              top: -50,
+              left: -50,
+              right: 50,
+              bottom: 50,
+            }}
+            className="badge-cmp app__flex"
+          >
+            <motion.span
+              animate={{ rotate: [0, -10, 0] }}
+              transition={{ repeat: Infinity, duration: 2 }}
+            >
+              👋
+            </motion.span>
             <div style={{ marginLeft: 10 }}>
               <p className="p-text">Hello, I am</p>
               <h3>Nguyễn Doãn Thắng</h3>
             </div>
-          </div>
-          <div className="tag-cmp app__flex">
+          </motion.div>
+          <motion.div
+            drag
+            dragConstraints={{
+              top: -50,
+              left: -50,
+              right: 50,
+              bottom: 50,
+            }}
+            className="tag-cmp app__flex"
+          >
             <p className="p-text">Frontend Developer</p>
             <p className="p-text">Intern / Fresher</p>
-          </div>
+          </motion.div>
         </div>
       </motion.div>
       <motion.div
@@ -44,7 +67,7 @@ const Header = () => {
         transition={{ duration: 0.5, delayChildren: 0.5 }}
         className="app__header-img"
       >
-        <img src={images.profile} alt="profile_bg" />
+        <img src={images.avatar} alt="profile_bg" />
         <motion.img
           whileInView={{ scale: [0, 1] }}
           transition={{ duration: 1, ease: "easeInOut" }}

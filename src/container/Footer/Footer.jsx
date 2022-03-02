@@ -1,33 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 
-import { images } from '../../constants';
-import { AppWrap, MotionWrap } from '../../wrapper';
-import { client } from '../../client';
-import './Footer.scss';
+import { images } from "../../constants";
+import { AppWrap, MotionWrap } from "../../wrapper";
+import { client } from "../../client";
+import "./Footer.scss";
 
 const Footer = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const { username, email, message } = formData;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const handleChangeInput = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = () => {
+  const onSubmit = (data) => {
     setLoading(true);
 
     const contact = {
-      _type: 'contact',
-      name: formData.username,
-      email: formData.email,
-      message: formData.message,
+      _type: "contact",
+      name: data.username,
+      email: data.email,
+      message: data.message,
     };
 
-    client.create(contact)
+    client
+      .create(contact)
       .then(() => {
         setLoading(false);
         setIsFormSubmitted(true);
@@ -37,42 +37,68 @@ const Footer = () => {
 
   return (
     <>
-      <h2 className="head-text">Take a coffee & chat with me</h2>
+      <h2 className="head-text">
+        <span>Contact</span>
+      </h2>
 
       <div className="app__footer-cards">
         <div className="app__footer-card ">
           <img src={images.email} alt="email" />
-          <a href="mailto:hello@micael.com" className="p-text">hello@micael.com</a>
+          <a href="mailto:hello@micael.com" className="p-text">
+            thangnd111220@gmail.com
+          </a>
         </div>
         <div className="app__footer-card">
           <img src={images.mobile} alt="phone" />
-          <a href="tel:+1 (123) 456-7890" className="p-text">+1 (123) 456-7890</a>
+          <a href="tel:0355234584" className="p-text">
+            0355234584
+          </a>
         </div>
       </div>
       {!isFormSubmitted ? (
-        <div className="app__footer-form app__flex">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="app__footer-form app__flex"
+        >
           <div className="app__flex">
-            <input className="p-text" type="text" placeholder="Your Name" name="username" value={username} onChange={handleChangeInput} />
+            <input
+              className="p-text"
+              type="text"
+              placeholder="Your Name"
+              {...register("username", { required: true })}
+            />
           </div>
+          <p className="app__footer-form--error">
+            {errors.username && <span>This name is required</span>}
+          </p>
           <div className="app__flex">
-            <input className="p-text" type="email" placeholder="Your Email" name="email" value={email} onChange={handleChangeInput} />
+            <input
+              className="p-text"
+              type="email"
+              placeholder="Your Email"
+              {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
+            />
           </div>
+          <p className="app__footer-form--error">
+            {errors.email && <span>This email is required</span>}
+          </p>
           <div>
             <textarea
               className="p-text"
               placeholder="Your Message"
-              value={message}
-              name="message"
-              onChange={handleChangeInput}
+              {...register("message", { required: true })}
             />
           </div>
-          <button type="button" className="p-text" onClick={handleSubmit}>{!loading ? 'Send Message' : 'Sending...'}</button>
-        </div>
+          <p className="app__footer-form--error">
+            {errors.message && <span>This message is required</span>}
+          </p>
+          <button type="submit" className="p-text" onClick={handleSubmit}>
+            {!loading ? "Send Message" : "Sending..."}
+          </button>
+        </form>
       ) : (
         <div>
-          <h3 className="head-text">
-            Thank you for getting in touch!
-          </h3>
+          <h3 className="head-text">Thank you for getting in touch!</h3>
         </div>
       )}
     </>
@@ -80,7 +106,7 @@ const Footer = () => {
 };
 
 export default AppWrap(
-  MotionWrap(Footer, 'app__footer'),
-  'contact',
-  'app__whitebg',
+  MotionWrap(Footer, "app__footer"),
+  "contact",
+  "app__whitebg"
 );

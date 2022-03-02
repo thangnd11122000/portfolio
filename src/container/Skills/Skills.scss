@@ -45,15 +45,16 @@
     width: 90px;
     height: 90px;
     border-radius: 50%;
-    background-color: #fef4f5;
-
+    background-color: #f9fffd;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
     img {
       width: 50%;
       height: 50%;
     }
 
     &:hover {
-      box-shadow: 0 0 25px #fef4f5;
+      box-shadow: 0 0 25px #B2F5E7;
     }
 
     @media screen and (min-width: 2000px) {
@@ -96,7 +97,7 @@
 .app__skills-exp-item {
   width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   margin: 1rem 0;
@@ -104,7 +105,7 @@
 
 .app__skills-exp-works {
   flex: 1;
-
+  margin-top: 5px;
   .app__skills-exp-work {
     display: flex;
     flex-direction: column;
@@ -125,10 +126,21 @@
   }
 }
 
+.app__skills-exp-projects {
+  flex: 1;
+  p {
+    color: var(--gray-color);
+  }
+  span {
+    color: #222;
+  }
+}
+
 .app__skills-exp-year {
   margin-right: 3rem;
 
   p {
+    font-size: 14px;
     font-weight: 800;
     color: var(--secondary-color);
   }

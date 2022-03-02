@@ -22,10 +22,11 @@ const Skills = () => {
       setSkills(data);
     });
   }, []);
-
   return (
     <>
-      <h2 className="head-text">Skills & Experiences</h2>
+      <h2 className="head-text">
+        <span>Skills {"&"} Experiences</span>
+      </h2>
 
       <div className="app__skills-container">
         <motion.div className="app__skills-list">
@@ -53,7 +54,7 @@ const Skills = () => {
                 <p className="bold-text">{experience.year}</p>
               </div>
               <motion.div className="app__skills-exp-works">
-                {experience.works.map((work) => (
+                {experience?.works?.map((work) => (
                   <React.Fragment key={work.name}>
                     <motion.div
                       whileInView={{ opacity: [0, 1] }}
@@ -73,6 +74,32 @@ const Skills = () => {
                     >
                       {work.desc}
                     </ReactTooltip>
+                  </React.Fragment>
+                ))}
+              </motion.div>
+              <motion.div className="app__skills-exp-projects">
+                {experience?.projects?.map((project) => (
+                  <React.Fragment key={project.name}>
+                    <motion.div
+                      whileInView={{ opacity: [0, 1] }}
+                      transition={{ duration: 0.5 }}
+                      className="app__skills-exp-work"
+                      data-tip
+                      data-for={project.name}
+                    >
+                      <h4 className="bold-text">{project.name}</h4>
+                      <p className="p-text" style={{ marginTop: 3 }}>
+                        <span>Role: </span>
+                        {project.role}
+                      </p>
+                      <p className="p-text">
+                        <span>Technology: </span>
+                        {project.technology}
+                      </p>
+                      <p className="p-text">
+                        <span>Experience:</span> {project.experience}
+                      </p>
+                    </motion.div>
                   </React.Fragment>
                 ))}
               </motion.div>

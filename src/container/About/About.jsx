@@ -1,45 +1,58 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import React, { useEffect, useState } from "react";
-import "./About.scss";
 import { urlFor, client } from "../../client";
 import { AppWrap } from "../../wrapper";
+import "./About.scss";
 
 const About = () => {
-  const [abouts, setAbouts] = useState([]);
+  const [infos, setInfos] = useState([]);
+  const [objectives, setObjectives] = useState([]);
   useEffect(() => {
-    const query = '*[_type == "abouts"]';
+    const query = '*[_type == "information"]';
     client.fetch(query).then((data) => {
-      setAbouts(data);
+      setInfos(data);
+    });
+  }, []);
+  useEffect(() => {
+    const query = '*[_type == "objective"]';
+    client.fetch(query).then((data) => {
+      setObjectives(data);
     });
   }, []);
   return (
     <>
       <h2 className="head-text">
-        I Know That
-        <span>Good Design </span>
+        <span>About</span>
         <br />
-        means
-        <span>Good Business </span>
       </h2>
 
       <div className="app__profiles">
-        {abouts.map((about, index) => (
-          <motion.div
-            whileInView={{ opacity: 1 }}
-            whileHover={{ scale: 1.1 }}
-            transition={{ duration: 0.5, type: "tween" }}
-            className="app__profile-item"
-            key={about.title + index}
-          >
-            <img src={urlFor(about.imgUrl)} alt={about.title} />
-            <h2 className="bold-text" style={{ marginTop: 20 }}>
-              {about.title}
-            </h2>
-            <h2 className="p-text" style={{ marginTop: 10 }}>
-              {about.description}
-            </h2>
-          </motion.div>
-        ))}
+        <div className="app__information">
+          {infos?.reverse()?.map((info, index) => (
+            <motion.div
+              whileInView={{ opacity: 1 }}
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.5, type: "tween" }}
+              key={info.title + index}
+              className="app__information--item"
+            >
+              <img src={urlFor(info.icon)} alt={info.title} />
+              <div>
+                <h2 className="bold-text">{info.title}</h2>
+                <p className="p-text">{info.description}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+        <div className="app__objective">
+          <h2>Objective</h2>
+          {objectives?.reverse()?.map((objective, index) => (
+            <div key={index} className="app__objective--item">
+              <span>( {objective.period} )</span>
+              <p>{objective.description}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );

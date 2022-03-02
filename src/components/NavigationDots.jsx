@@ -1,6 +1,6 @@
 import React from "react";
 
-const items = ["home", "about", "work", "skills", "testimonials", "contact"];
+const items = ["home", "about", "project", "skills", "testimonials", "contact"];
 
 const NavigationDots = ({ active }) => {
   return (

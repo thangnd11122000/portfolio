@@ -48,13 +48,20 @@
   flex-direction: column;
   .badge-cmp,
   .tag-cmp {
+    position: relative;
     padding: 1rem 2rem;
     border: var(--white-color);
     border-radius: 15px;
     flex-direction: row;
     width: auto;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    background: var(--white-color);
+    cursor: pointer;
+    &:hover {
+      box-shadow: 0 0 50px rgba(195, 0, 255, 0.2);
+    }
   }
+
   .tag-cmp {
     flex-direction: column;
     margin-top: 3rem;
@@ -94,6 +101,10 @@
     border-radius: 50%;
     background: var(--white-color);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    &:hover {
+      box-shadow: 0 0 50px rgba(195, 0, 255, 0.2);
+    }
   }
   img {
     width: 60%;
@@ -143,11 +154,12 @@
   flex: 1;
   height: 100%;
   display: flex;
-  justify-content: flex-end;
+  // justify-content: flex-end;
+  justify-content: center;
   align-items: flex-end;
   position: relative;
   img {
-    width: 100%;
+    width: 80%;
     object-fit: contain;
     z-index: 1;
   }
