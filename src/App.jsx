@@ -8,7 +8,7 @@ import {
   Projects,
 } from "./container";
 import { BsFillArrowUpSquareFill } from "react-icons/bs";
-import { Navbar } from "./components";
+import { Navbar, NavigationDots } from "./components";
 import "./App.scss";
 const App = () => {
   const [show, setShow] = useState(false);
@@ -22,6 +22,7 @@ const App = () => {
 
   return (
     <div className="app">
+      <NavigationDots />
       <Navbar />
       <Header />
       <About />

@@ -1,6 +1,90 @@
 .app {
   background-color: var(--primary-color);
   font-family: var(--font-base);
+  &--dark {
+    background: #2b2c2f;
+
+    .head-text {
+      color: var(--primary-color);
+      text-transform: capitalize;
+
+      span {
+        color: #4d79ff;
+      }
+    }
+
+    .p-text {
+      color: var(--primary-color);
+    }
+
+    .app__social {    
+      a {
+        background-color: inherit;
+        margin: 0.25rem 0;
+        border: 1px solid var(--lightGray-color);
+    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+        transition: all 0.3s ease-in-out;
+    
+        svg {
+          width: 15px;
+          height: 15px;
+          color: var(--gray-color);
+        }
+    
+        @media screen and (min-width: 2000px) {
+          width: 70px;
+          height: 70px;
+    
+          margin: 0.5rem 0;
+    
+          svg {
+            width: 30px;
+            height: 30px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.inner-shadow {
+  box-shadow: var(--inner-shadow);
+}
+.outer-shadow {
+  box-shadow: var(--outer-shadow);
+  &:hover {
+    box-shadow: inset 2px 2px 2px rgba(0, 0, 0, 0.2);
+  }
+}
+.outer-shadow-1 {
+  box-shadow: var(--outer-shadow-1);
+  &:hover {
+    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.hover-shadow {
+  position: relative;
+  z-index: 1;
+  &:hover {
+    box-shadow: var(--outer-shadow-0);
+    &::after {
+      box-shadow: var(--inner-shadow);
+    }
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    transition: all 0.3 ease;
+  }
 }
 
 .app__whitebg {
@@ -28,7 +112,7 @@
   flex: 1;
   width: 100%;
   flex-direction: column;
-  padding: 4rem 2rem;
+  padding: 4rem 8rem;
 
   @media screen and (max-width: 450px) {
     padding: 4rem 1rem 2rem;
@@ -38,15 +122,24 @@
 .copyright {
   width: 100%;
   padding: 1rem 0 0;
-
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-end;
+  justify-content: space-between;
 
-  p {
-    text-transform: uppercase;
-    color: var(--black-color);
+  .app__social {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    p {
+      text-transform: uppercase;
+      color: var(--black-color);
+    }
   }
 }
 
@@ -123,15 +216,6 @@
       color: var(--gray-color);
     }
 
-    &:hover {
-      background-color: var(--secondary-color);
-      border-color: var(--secondary-color);
-
-      svg {
-        color: var(--white-color);
-      }
-    }
-
     @media screen and (min-width: 2000px) {
       width: 70px;
       height: 70px;
@@ -147,11 +231,15 @@
 }
 
 .app__navigation {
+  position: fixed;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
-  padding: 18rem 1rem 0;
+  z-index: 10;
   .app__navigation-dot {
     width: 10px;
     height: 10px;
@@ -194,6 +282,7 @@
   }
 
   .copyright {
-    padding: 2rem;
+    padding: 0.5rem;
+    justify-content: flex-end;
   }
 }

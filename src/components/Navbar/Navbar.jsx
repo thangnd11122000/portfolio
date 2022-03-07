@@ -1,17 +1,21 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { HiMenuAlt4, HiX } from "react-icons/hi";
+import { ThemeContext } from "../../context";
 import "./Navbar.scss";
 
 const items = ["home", "about", "project", "skills", "contact"];
 
 const Navbar = () => {
-  const [toggle, setToggle] = useState(false);
+  const [toggleMenu, setToggleMenu] = useState(false);
   const ref = useRef(null);
+
+  const theme = useContext(ThemeContext);
+  const darkMode = theme.state.darkMode;
 
   useEffect(() => {
     function handleClickOutside(event) {
       if (ref.current && !ref.current.contains(event.target)) {
-        setToggle(false);
+        setToggleMenu(false);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
@@ -21,7 +25,7 @@ const Navbar = () => {
   }, [ref]);
 
   return (
-    <nav className="app__navbar">
+    <nav className={`app__navbar ${darkMode ? "app__navbar--dark" : ""}`}>
       <div className="app__navbar-logo">
         <a href="#home">NDT</a>
       </div>
@@ -34,16 +38,22 @@ const Navbar = () => {
         ))}
       </ul>
 
-      <div className="app__navbar-open" onClick={() => setToggle(true)}>
+      <div
+        className="app__navbar-open outer-shadow-1"
+        onClick={() => setToggleMenu(true)}
+      >
         <HiMenuAlt4 />
       </div>
 
-      <div className={`app__navbar-menu ${toggle ? "active" : ""}`} ref={ref}>
-        <HiX onClick={() => setToggle(false)} />
+      <div
+        className={`app__navbar-menu ${toggleMenu ? "active" : ""}`}
+        ref={ref}
+      >
+        <HiX onClick={() => setToggleMenu(false)} />
         <ul className="app__navbar-links">
           {items.map((item) => (
             <li key={`${item}`} className="app__flex p-text">
-              <a href={`#${item}`} onClick={() => setToggle(false)}>
+              <a href={`#${item}`} onClick={() => setToggleMenu(false)}>
                 {item}
               </a>
             </li>

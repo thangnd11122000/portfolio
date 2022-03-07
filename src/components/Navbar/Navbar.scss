@@ -10,6 +10,10 @@
   border: 1px solid rgba(255, 255, 255, 0.18);
   position: fixed;
   z-index: 2;
+
+  &--dark {
+    background: rgba(0, 255, 179, 0.75);
+  }
 }
 
 .app__navbar-logo {
@@ -75,7 +79,7 @@
   display: none;
   justify-content: center;
   align-items: center;
-  background: var(--secondary-color);
+  background: #fff;
 
   @media screen and (max-width: 900px) {
     display: flex;
@@ -84,7 +88,7 @@
   svg {
     width: 70%;
     height: 70%;
-    color: var(--white-color);
+    color: var(--secondary-color);
   }
 }
 

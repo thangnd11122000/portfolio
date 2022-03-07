@@ -1,18 +1,11 @@
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { urlFor, client } from "../../client";
+import { client } from "../../client";
 import { AppWrap } from "../../wrapper";
 import "./About.scss";
+import Contact from "../../Contact/Contact";
 
 const About = () => {
-  const [infos, setInfos] = useState([]);
   const [objectives, setObjectives] = useState([]);
-  useEffect(() => {
-    const query = '*[_type == "information"]';
-    client.fetch(query).then((data) => {
-      setInfos(data);
-    });
-  }, []);
   useEffect(() => {
     const query = '*[_type == "objective"]';
     client.fetch(query).then((data) => {
@@ -28,27 +21,13 @@ const About = () => {
 
       <div className="app__profiles">
         <div className="app__information">
-          {infos?.reverse()?.map((info, index) => (
-            <motion.div
-              whileInView={{ opacity: 1 }}
-              whileHover={{ scale: 1.1 }}
-              transition={{ duration: 0.5, type: "tween" }}
-              key={info.title + index}
-              className="app__information--item"
-            >
-              <img src={urlFor(info.icon)} alt={info.title} />
-              <div>
-                <h2 className="bold-text">{info.title}</h2>
-                <p className="p-text">{info.description}</p>
-              </div>
-            </motion.div>
-          ))}
+          <Contact />
         </div>
         <div className="app__objective">
           <h2>Education</h2>
           <div className="app__objective--item app__education">
             <p>
-              FPT Polytechnic <span>(05/2020 - 09/ 2022)</span>
+              FPT Polytechnic <span>(05/2020 - 09/2022)</span>
             </p>
             <p>Major: Web Design</p>
           </div>

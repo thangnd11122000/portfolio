@@ -19,7 +19,10 @@ const Skills = () => {
     });
 
     client.fetch(skillsQuery).then((data) => {
-      setSkills(data);
+      let temp = data.sort(
+        (first, second) => Number(first.id) - Number(second.id)
+      );
+      setSkills(temp);
     });
   }, []);
   return (
@@ -30,20 +33,25 @@ const Skills = () => {
 
       <div className="app__skills-container">
         <motion.div className="app__skills-list">
-          {skills.map((skill, index) => (
+          {skills.map((skill) => (
             <motion.div
               whileInView={{ opacity: [0, 1] }}
               transition={{ duration: 0.5 }}
-              className="app__skills-item app__flex"
+              className="app__skill-item app__flex"
               key={skill.name}
             >
               <div
-                className="app__flex"
+                className="app__flex app__skill-item--img"
                 style={{ backgroundColor: skill.bgColor }}
               >
                 <img src={urlFor(skill.icon)} alt={skill.name} />
               </div>
-              <p className="p-text">{skill.name}</p>
+              <div className="app__skill-item--percent">
+                <p className="p-text">{skill.name}</p>
+                <div className="process">
+                  <div style={{ width: `${skill.percent}%` }}></div>
+                </div>
+              </div>
             </motion.div>
           ))}
         </motion.div>
