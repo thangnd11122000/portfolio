@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { HiMenuAlt4, HiX } from "react-icons/hi";
-import { ThemeContext } from "../../context";
 import "./Navbar.scss";
 
 const items = ["home", "about", "project", "skills", "contact"];
@@ -8,9 +7,6 @@ const items = ["home", "about", "project", "skills", "contact"];
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const ref = useRef(null);
-
-  const theme = useContext(ThemeContext);
-  const darkMode = theme.state.darkMode;
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -25,7 +21,7 @@ const Navbar = () => {
   }, [ref]);
 
   return (
-    <nav className={`app__navbar ${darkMode ? "app__navbar--dark" : ""}`}>
+    <nav className="app__navbar">
       <div className="app__navbar-logo">
         <a href="#home">NDT</a>
       </div>
